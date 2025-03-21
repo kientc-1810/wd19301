@@ -40,10 +40,14 @@
                 <tr>
                     <td>{{$cate->id}}</td>
                     <td>{{$cate->name}}</td>
-                    <td>{{$cate->status ? "Hành động" : "Tạm dừng"}}</td>
+                    <td>{{$cate->status ? "Hoạt động" : "Tạm dừng"}}</td>
                     <td>
-                        <a href="" class="btn btn-warning">Sửa</a>
-                        <button class="btn btn-danger">Xóa</button>
+                        <a href="{{route('categories.edit',$cate->id)}}" class="btn btn-warning">Sửa</a>
+                        <form action="{{route('categories.destroy',$cate->id)}}" method="post" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn xóa không?')">Xóa</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
